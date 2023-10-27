@@ -33,7 +33,7 @@ class SplashScreen(QWidget):
         # center labels
         self.labelTitle.resize(self.width() - 10, 150)
         self.labelTitle.move(0, 40) # x, y
-        self.labelTitle.setText('Splash Screen')
+        self.labelTitle.setText('Processing')
         self.labelTitle.setAlignment(Qt.AlignCenter)
 
         self.labelDescription = QLabel(self.frame)

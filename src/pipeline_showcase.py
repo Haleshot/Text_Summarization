@@ -10,7 +10,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-from PyQt5.QtWidgets import QLabel, QVBoxLayout, QWidget, QPushButton
+from PyQt5.QtWidgets import QLabel, QVBoxLayout, QWidget, QPushButton, QApplication
 import os
 from PyQt5.QtGui import QPixmap
 import sys
@@ -19,6 +19,8 @@ from PyQt5.QtWidgets import QWidget
 from PyQt5.uic import loadUiType
 import pandas as pd
 from PyQt5 import QtWidgets
+
+from PyQt5_Splash_Screen import SplashScreen
 
 scriptDir = dirname(realpath(__file__))
 From_Main, _ = loadUiType(join(dirname(__file__), "pipeline_showcase.ui"))
@@ -31,9 +33,9 @@ class Ui_pipeline(QWidget, From_Main):
         self.pipelineLabel.setGeometry(QtCore.QRect(110, 30, 1011, 611))
         self.pipelineLabel.setText("")
         self.pipelineLabel.setObjectName("pipelineLabel")
-        self.pushButton = QtWidgets.QPushButton(pipeline)
-        self.pushButton.setGeometry(QtCore.QRect(480, 710, 251, 51))
-        self.pushButton.setObjectName("pushButton")
+        self.Next_Button = QtWidgets.QPushButton(pipeline)
+        self.Next_Button.setGeometry(QtCore.QRect(480, 710, 251, 51))
+        self.Next_Button.setObjectName("Next_Button")
 
         # loading image
         self.pixmap = QPixmap("src\Pipeline.png")
@@ -50,21 +52,57 @@ class Ui_pipeline(QWidget, From_Main):
     def retranslateUi(self, pipeline):
         _translate = QtCore.QCoreApplication.translate
         pipeline.setWindowTitle(_translate("pipeline", "pipeline_showcase"))
-        self.pushButton.setText(_translate("pipeline", "Next"))
+        self.Next_Button.setText(_translate("pipeline", "Next"))
 
 
     def Next_Page(self):
-        self.window = QtWidgets.QDialog()
+
+        # self.window=QtWidgets.QMainWindow()
+        # self.ui=SplashScreen()      #------------->creating an object 
+        # # self.ui.setupUi(self.window)
+        # self.window.show()
+
+        pipeline.close()
+        app.setStyleSheet('''
+        #LabelTitle {
+            font-size: 60px;
+            color: #93deed;
+        }
+
+        #LabelDesc {
+            font-size: 30px;
+            color: #c2ced1;
+        }
+
+        #LabelLoading {
+            font-size: 30px;
+            color: #e8e8eb;
+        }
+
+        QFrame {
+            background-color: #2F4454;
+            color: rgb(220, 220, 220);
+        }
+
+        QProgressBar {
+            background-color: #DA7B93;
+            color: rgb(200, 200, 200);
+            border-style: none;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 30px;
+        }
+
+        QProgressBar::chunk {
+            border-radius: 10px;
+            background-color: qlineargradient(spread:pad x1:0, x2:1, y1:0.511364, y2:0.523, stop:0 #1C3334, stop:1 #376E6F);
+        }
+    ''')
+
+
+        self.splash = SplashScreen()
+        self.splash.show()
         
-        # Create an instance of Ui_pipeline and set it up
-        self.ui = Ui_pipeline()
-        self.ui.setupUi(self.window)
-
-        # Now you can show the QDialog
-        self.window.show()
-
-        # Close the current window (optional, if needed)
-        self.close()
 
 
 if __name__ == "__main__":
@@ -74,4 +112,5 @@ if __name__ == "__main__":
     ui = Ui_pipeline()
     ui.setupUi(pipeline)
     pipeline.show()
+    
     sys.exit(app.exec_())
