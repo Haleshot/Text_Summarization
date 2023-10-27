@@ -28,13 +28,46 @@ class MainWindow(QWidget, From_Main):
         try:
             path = QFileDialog.getOpenFileName(self, 'Open CSV', os.getenv('HOME'), 'CSV(*.csv)')[0]
             self.all_data = pd.read_csv(path)
+            
+            # Basic EDA in terminal for debugging and reference purpose.
+
+            print("\n\n\n")
+            print("#############################################################################")
+            print("Log for Reference purpose and Debugging")
+            print("#############################################################################")
+            print("\n\n\n")
+            print("#############################################################################")
+            print(self.all_data.head())
+            print("#############################################################################")
+            print("\n\n\n")
+
+            print("#############################################################################")
+            print(self.all_data.info())
+            print("#############################################################################")
+            print("\n\n\n")
+
+            print("#############################################################################")
+            print(self.all_data.describe())
+            print("#############################################################################")
+            print("\n\n\n")
+
+            print("#############################################################################")
+            print(self.all_data.dtypes)
+            print("#############################################################################")
+            print("\n\n\n")
+
+            print("#############################################################################")
+            print(self.all_data.shape)
+            print("#############################################################################")
+            print("\n\n\n")
         except:
             print(path)
 
     def dataHead(self):
         numColomn = self.spinBox.value()
         if numColomn == 0:
-            NumRows = len(self.all_data.index)
+            # NumRows = len(self.all_data.index) => doesn't respond if dataset is too large.
+            NumRows = len(self.all_data.head(1000))
         else:
             NumRows = numColomn
         self.tableWidget.setColumnCount(len(self.all_data.columns))
