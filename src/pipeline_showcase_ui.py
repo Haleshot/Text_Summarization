@@ -15,7 +15,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QDialog, QLabel, QPushButton, QVBoxLayout,
+from PySide6.QtWidgets import (QApplication, QDialog, QLabel, QPushButton,
     QSizePolicy, QWidget)
 
 class Ui_pipeline(object):
@@ -23,35 +23,21 @@ class Ui_pipeline(object):
         if not pipeline.objectName():
             pipeline.setObjectName(u"pipeline")
         pipeline.resize(1200, 800)
-
-        layout = QVBoxLayout()  # Use pipeline as the parent
-
-        self.pipelineLabel = QLabel()
+        self.pipelineLabel = QLabel(pipeline)
         self.pipelineLabel.setObjectName(u"pipelineLabel")
         self.pipelineLabel.setGeometry(QRect(110, 30, 1011, 611))
-        layout.addWidget(self.pipelineLabel)
-        
-        
-        self.pushButton = QPushButton()    
-        self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setGeometry(QRect(480, 710, 251, 51))
-        layout.addWidget(self.pushButton)
-        
-        # Set the layout for the QDialog
-        pipeline.setLayout(layout)
+        self.Next_Button = QPushButton(pipeline)
+        self.Next_Button.setObjectName(u"Next_Button")
+        self.Next_Button.setGeometry(QRect(480, 710, 251, 51))
 
         self.retranslateUi(pipeline)
-        
-        QMetaObject.connectSlotsByName(pipeline)
 
+        QMetaObject.connectSlotsByName(pipeline)
     # setupUi
 
     def retranslateUi(self, pipeline):
         pipeline.setWindowTitle(QCoreApplication.translate("pipeline", u"pipeline_showcase", None))
-        self.pipelineLabel.setText("Something")
-        self.pushButton.setText(QCoreApplication.translate("pipeline", u"Next", None))
-
-        QMetaObject.connectSlotsByName(pipeline)
-
+        self.pipelineLabel.setText("")
+        self.Next_Button.setText(QCoreApplication.translate("pipeline", u"Next", None))
     # retranslateUi
 

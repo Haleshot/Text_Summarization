@@ -44,10 +44,27 @@ class Ui_pipeline(QWidget, From_Main):
         self.retranslateUi(pipeline)
         QtCore.QMetaObject.connectSlotsByName(pipeline)
 
+
+        self.Next_Button.clicked.connect(self.Next_Page)
+
     def retranslateUi(self, pipeline):
         _translate = QtCore.QCoreApplication.translate
         pipeline.setWindowTitle(_translate("pipeline", "pipeline_showcase"))
         self.pushButton.setText(_translate("pipeline", "Next"))
+
+
+    def Next_Page(self):
+        self.window = QtWidgets.QDialog()
+        
+        # Create an instance of Ui_pipeline and set it up
+        self.ui = Ui_pipeline()
+        self.ui.setupUi(self.window)
+
+        # Now you can show the QDialog
+        self.window.show()
+
+        # Close the current window (optional, if needed)
+        self.close()
 
 
 if __name__ == "__main__":

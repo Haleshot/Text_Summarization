@@ -77,6 +77,7 @@ class SplashScreen(QWidget):
 
         self.counter += 1
 
+        
 class MyApp(QWidget):
     def __init__(self):
         super().__init__()
