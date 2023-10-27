@@ -22,11 +22,16 @@ from PyQt5 import QtWidgets
 
 from PyQt5_Splash_Screen import SplashScreen
 
+# Define app as a global variable so that we can access it while being redirected from the main.py file
+app = QtWidgets.QApplication([])
+
 scriptDir = dirname(realpath(__file__))
 From_Main, _ = loadUiType(join(dirname(__file__), "pipeline_showcase.ui"))
 
 class Ui_pipeline(QWidget, From_Main):
+    pipeline = None  # Define pipeline as a class attribute so that we can access it while being redirected from the main.py file
     def setupUi(self, pipeline):
+        Ui_pipeline.pipeline = pipeline  # Assign pipeline to the class attribute
         pipeline.setObjectName("pipeline")
         pipeline.resize(1200, 800)
         self.pipelineLabel = QtWidgets.QLabel(pipeline)
@@ -62,7 +67,14 @@ class Ui_pipeline(QWidget, From_Main):
         # # self.ui.setupUi(self.window)
         # self.window.show()
 
-        pipeline.close()
+        # pipeline.close()
+
+
+        if Ui_pipeline.pipeline is not None:
+            # Close the pipeline using the class attribute
+            Ui_pipeline.pipeline.close()
+        
+        
         app.setStyleSheet('''
         #LabelTitle {
             font-size: 60px;

@@ -8,7 +8,6 @@ from PyQt5 import QtWidgets
 
 
 # import files of various UI pages used in the Project (Workflow)
-from pipeline_showcase_ui import Ui_pipeline
 from pipeline_showcase import Ui_pipeline
 
 scriptDir = dirname(realpath(__file__))
