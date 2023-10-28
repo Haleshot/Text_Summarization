@@ -27,7 +27,6 @@ class MainWindow(QWidget, From_Main):
         try:
             path = QFileDialog.getOpenFileName(self, 'Open CSV', os.getenv('HOME'), 'CSV(*.csv)')[0]
             self.all_data = pd.read_csv(path)
-            
             # Basic EDA in terminal for debugging and reference purpose.
 
             print("\n\n\n")

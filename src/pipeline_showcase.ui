@@ -40,6 +40,9 @@
    </property>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>Next_Button</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
