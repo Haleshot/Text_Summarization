@@ -46,7 +46,7 @@ class SplashScreen(QWidget):
         self.labelDescription.resize(self.width() - 10, 50)
         self.labelDescription.move(0, self.labelTitle.height())
         self.labelDescription.setObjectName('LabelDesc')
-        self.labelDescription.setText('<strong>Working on Task #1</strong>')
+        self.labelDescription.setText('<strong>Preparing Data...</strong>')
         self.labelDescription.setAlignment(Qt.AlignCenter)
 
         self.progressBar = QProgressBar(self.frame)
@@ -69,9 +69,9 @@ class SplashScreen(QWidget):
         self.progressBar.setValue(self.counter)
 
         if self.counter == int(self.n * 0.3):
-            self.labelDescription.setText('<strong>Working on Task #2</strong>')
+            self.labelDescription.setText('<strong>Loading DataFrame...</strong>')
         elif self.counter == int(self.n * 0.6):
-            self.labelDescription.setText('<strong>Working on Task #3</strong>')
+            self.labelDescription.setText('<strong>Finishing...</strong>')
         elif self.counter >= self.n:
             self.timer.stop()
             self.close()
